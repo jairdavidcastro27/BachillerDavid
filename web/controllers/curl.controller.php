@@ -135,8 +135,8 @@ class CurlController{
 	static public function dlocal($url, $method, $fields){
 
 		$endpoint = "https://api-sbx.dlocalgo.com/"; //TEST
-		$apiKey = "..."; //TEST
-		$secretKey = "..."; //TEST
+		$apiKey = "HylkxObOUwYgwNYIDQALFyTMwJdUsSQC"; //TEST
+		$secretKey = "iR265jyVGVtxwWEukUA1IgJMp7bJm6YGEkMnICy0"; //TEST
 
 
 		$curl = curl_init();

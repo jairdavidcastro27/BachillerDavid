@@ -99,103 +99,54 @@ class AdminsController{
 
 	public function resetPassword(){
 
-		if(isset($_POST["resetPassword"])){
+        if(isset($_POST["resetPassword"])){
 
-			echo '<script>
+            echo '<script>
 
-				fncMatPreloader("on");
-				fncSweetAlert("loading", "", "");
+                fncMatPreloader("on");
+                fncSweetAlert("loading", "", "");
 
-			</script>';
+            </script>';
 
-			/*=============================================
-			Validamos la sintaxis de los campos
-			=============================================*/	
+            $email = trim(strtolower($_POST["resetPassword"]));
 
-			if(preg_match( '/^[.a-zA-Z0-9_]+([.][.a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["resetPassword"] )
-			){
+            if(preg_match( '/^[.a-zA-Z0-9_]+([.][.a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][.a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $email ) ){
 
-				/*=============================================
-				Preguntamos primero si el usuario está registrado
-				=============================================*/	
+                $url = "admins?linkTo=email_admin&equalTo=".$email."&select=id_admin";
+                $method = "GET";
+                $fields = array();
 
-				$url = "admins?linkTo=email_admin&equalTo=".$_POST["resetPassword"]."&select=id_admin";
-				$method = "GET";
-				$fields = array();
+                $admin = CurlController::request($url,$method,$fields);
+                error_log('Recuperar admin: buscando email ' . $email);
+                error_log('Recuperar admin: resultado consulta: ' . json_encode($admin));
+                
+                if($admin->status == 200){
 
-				$admin = CurlController::request($url,$method,$fields);
-				
-				if($admin->status == 200){
+                    $newPassword = TemplateController::genPassword(11);
+                    $crypt = crypt($newPassword, '$2a$07$azybxcags23425sdg23sdfhsd$');
+                    $url = "admins?id=".$admin->results[0]->id_admin."&nameId=id_admin&token=no&except=password_admin";
+                    $method = "PUT";
+                    $fields = "password_admin=".$crypt;
+                    $updatePassword = CurlController::request($url,$method,$fields);
 
-					$newPassword = TemplateController::genPassword(11);
-
-					$crypt = crypt($newPassword, '$2a$07$azybxcags23425sdg23sdfhsd$');
-							
-					/*=============================================
-					Actualizar contraseña en base de datos
-					=============================================*/
-					$url = "admins?id=".$admin->results[0]->id_admin."&nameId=id_admin&token=no&except=password_admin";
-					$method = "PUT";
-					$fields = "password_admin=".$crypt;
-
-					$updatePassword = CurlController::request($url,$method,$fields);
-
-					if($updatePassword->status == 200){	
-
-						$subject = 'Solicitud de nueva contraseña - Ecommerce';
-						$email = $_POST["resetPassword"];
-						$title ='SOLICITUD DE NUEVA CONTRASEÑA';
-						$message = '<h4 style="font-weight: 100; color:#999; padding:0px 20px"><strong>Su nueva contraseña: '.$newPassword.'</strong></h4>
-							<h4 style="font-weight: 100; color:#999; padding:0px 20px">Ingrese nuevamente al sitio con esta contraseña y recuerde cambiarla en el panel de perfil de usuario</h4>';
-						$link = TemplateController::path().'admin';
-
-						$sendEmail = TemplateController::sendEmail($subject, $email, $title, $message, $link);
-
-						if($sendEmail == "ok"){
-
-							echo '<script>
-
-									fncFormatInputs();
-									fncMatPreloader("off");
-									fncToastr("success", "Su nueva contraseña ha sido enviada con éxito, por favor revise su correo electrónico");
-
-								</script>
-							';
-
-						}else{
-
-							echo '<script>
-
-								fncFormatInputs();
-								fncMatPreloader("off");
-								fncNotie("error", "'.$sendEmail.'");
-
-								</script>
-							';
-
-						}
-					}
-
-				}else{
-
-					echo '<script>
-
-							fncFormatInputs();
-							fncMatPreloader("off");
-							fncNotie("error", "El correo no existe en la base de datos");
-
-						</script>
-					';
-
-				}
-
-			}
-
-
-		}
-
-
-	}
+                    if($updatePassword->status == 200){    
+                        $subject = 'Solicitud de nueva contraseña - Ecommerce';
+                        $title ='SOLICITUD DE NUEVA CONTRASEÑA';
+                        $message = '<h4 style="font-weight: 100; color:#999; padding:0px 20px"><strong>Su nueva contraseña: '.$newPassword.'</strong></h4><h4 style="font-weight: 100; color:#999; padding:0px 20px">Ingrese nuevamente al sitio con esta contraseña y recuerde cambiarla en el panel de perfil de usuario</h4>';
+                        $link = TemplateController::path().'admin';
+                        $sendEmail = TemplateController::sendEmail($subject, $email, $title, $message, $link);
+                        if($sendEmail == "ok"){
+                            echo '<script>fncFormatInputs();fncMatPreloader("off");fncToastr("success", "Su nueva contraseña ha sido enviada con éxito, por favor revise su correo electrónico");</script>';
+                        }else{
+                            echo '<script>fncFormatInputs();fncMatPreloader("off");fncNotie("error", "'.$sendEmail.'");</script>';
+                        }
+                    }
+                }else{
+                    echo '<script>fncFormatInputs();fncMatPreloader("off");fncNotie("error", "El correo no existe en la base de datos");</script>';
+                }
+            }
+        }
+    }
 
 	/*=============================================
 	Gestión Administradores

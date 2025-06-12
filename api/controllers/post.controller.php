@@ -108,6 +108,10 @@ class PostController{
 
 		$response = GetModel::getDataFilter($table, "*", "email_".$suffix, $data["email_".$suffix], null,null,null,null);
 		
+		// Debug: Log the email and query result
+		error_log('Login admin debug: buscando email ' . $data["email_".$suffix]);
+		error_log('Login admin debug: resultado de la consulta: ' . json_encode($response));
+		
 		if(!empty($response)){	
 
 			if($response[0]->{"password_".$suffix} != null)	{
@@ -188,7 +192,7 @@ class PostController{
 			}
 
 		}else{
-
+			error_log('Login admin debug: correo no encontrado en la base de datos');
 			$response = null;
 			$return = new PostController();
 			$return -> fncResponse($response, "Wrong email",$suffix);

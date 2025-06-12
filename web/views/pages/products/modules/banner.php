@@ -1,6 +1,11 @@
 <?php 
 
 
+// Asegurarse de que $locationBanner esté definido
+if (!isset($locationBanner)) {
+    $locationBanner = ""; // O asigna un valor por defecto adecuado
+}
+
 $select = "*";
 $url = "banners?linkTo=location_banner,status_banner&equalTo=".$locationBanner.",1&select=".$select;
 $method = "GET";

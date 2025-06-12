@@ -93,35 +93,6 @@
 
         </div>
 
-        <div class="col-12 col-sm-4 col-md-3 col-lg-4">
-          
-          <h4 class="lead">
-            
-            <a href="#" class="text-uppercase">Cursos</a>
-
-          </h4>
-
-          <hr class="border-white">
-
-          <ul>
-            
-            <li>
-              <a href="#">Calzado para dama</a>
-            </li>
-            <li>
-              <a href="#">Calzado para hombre</a>
-            </li>
-             <li>
-              <a href="#">Calzado deportivo</a>
-            </li>
-            <li>
-              <a href="#">Calzado infantil</a>
-            </li>
-          </ul>
-
-
-        </div>
-
       </div>
 
       <div class="col my-3 my-lg-0 px-lg-5 text-light">
@@ -132,7 +103,7 @@
 
         <h1 class="lead small">
           
-            <i class="fa fa-phone-square pe-2"></i> (555) 555-55-55
+            <i class="fa fa-phone-square pe-2"></i> 982664642
 
             <br><br>
 
@@ -140,14 +111,14 @@
 
             <br><br>
 
-            <i class="fa fa-map-marker pe-2"></i> Calle 45F 82 - 31 Local 102
+            <i class="fa fa-map-marker pe-2"></i> Arenales, Ica, Perú
 
             <br><br>
 
-            Bogotá | Colombia
+            Ica | Perú
         </h1>
 
-        <iframe class="mt-3" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.061210342917!2d-75.60279258568647!3d6.255666795471985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4429739f2122e9%3A0x4812b922f0ad8f18!2sCl.+45f+%2382-31%2C+Medell%C3%ADn%2C+Antioquia!5e0!3m2!1ses!2sco!4v1511900955540" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen=""></iframe>
+        <iframe class="mt-3" src="https://www.google.com/maps?q=-14.067588,-75.728056&z=15&output=embed" width="100%" height="200" frameborder="0" style="border:0" allowfullscreen=""></iframe>
 
       </div>
 
