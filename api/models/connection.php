@@ -37,8 +37,8 @@ class Connection{
 	=============================================*/
 	
 	static public function publicAccess(){
-
-		$tables = [""];
+        // Permitir acceso público a las tablas necesarias para selects
+        $tables = ["users", "orders"];
 
 		return $tables;
 
@@ -110,6 +110,17 @@ class Connection{
 				array_shift($columns);
 
 			}
+
+			// Limpiar espacios en los nombres de columnas
+			$columns = array_map('trim', $columns);
+
+        /* Si el array queda vacío tras quitar '*', devolver todas las columnas */
+        if (empty($columns)) {
+            $validate = Connection::connect()
+                ->query("SELECT COLUMN_NAME AS item FROM information_schema.columns WHERE table_schema = '$database' AND table_name = '$table'")
+                ->fetchAll(PDO::FETCH_OBJ);
+            return $validate;
+        }
 
 			/*=============================================
 			Validamos existencia de columnas

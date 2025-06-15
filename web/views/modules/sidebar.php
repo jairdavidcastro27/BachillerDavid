@@ -183,6 +183,13 @@ if($orders->status == 200){
           <?php endif ?> 
 
           <li class="nav-item">
+            <a href="/views/pages/credit_note.php" class="nav-link">
+              <i class="nav-icon fas fa-receipt"></i>
+              <p>Nota de Crédito</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="/salir" class="nav-link">
               <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>

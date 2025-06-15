@@ -204,3 +204,46 @@ MODAL PARA EDITAR UNA ORDEN
 		</div>
 	</div>
 </div>
+
+<!--=================================
+MODAL PARA NOTA DE CRÉDITO
+====================================-->
+<div class="modal fade" id="modalCreditNote">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form method="post" class="needs-validation" novalidate>
+                <div class="modal-header">
+                    <h4 class="modal-title">Crear Nota de Crédito</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 mt-3">
+                        <label for="credit_order" class="form-label">Orden</label>
+                        <select id="credit_order" name="credit_order" class="form-select" required></select>
+                        <div class="invalid-feedback">Selecciona una orden válida.</div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="credit_user" class="form-label">Usuario</label>
+                        <select id="credit_user" name="credit_user" class="form-select" required></select>
+                        <div class="invalid-feedback">Selecciona un usuario válido.</div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="credit_amount" class="form-label">Monto</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="credit_amount" name="credit_amount" placeholder="Monto de la nota de crédito" required>
+                        <div class="invalid-feedback">Ingresa un monto válido.</div>
+                    </div>
+                    <div class="mb-3 mt-3">
+                        <label for="credit_reason" class="form-label">Motivo</label>
+                        <textarea class="form-control" id="credit_reason" name="credit_reason" rows="2" placeholder="Motivo de la nota de crédito" required></textarea>
+                        <div class="invalid-feedback">Ingresa el motivo.</div>
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <div><button type="button" class="btn btn-dark rounded-pill" data-bs-dismiss="modal">Cerrar</button></div>
+                    <div><button type="submit" class="btn btn-success rounded-pill">Crear Nota de Crédito</button></div>
+                </div>
+                <!-- Aquí puedes agregar el PHP para procesar la nota de crédito si lo deseas -->
+            </form>
+        </div>
+    </div>
+</div>

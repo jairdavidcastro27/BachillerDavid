@@ -40,28 +40,21 @@ if(count($routesArray) == 1 && isset($_SERVER['REQUEST_METHOD'])){
 	if(!isset(getallheaders()["Authorization"]) || getallheaders()["Authorization"] != Connection::apikey()){
 
 		if(in_array($table, Connection::publicAccess()) == 0){
-	
 			$json = array(
-		
 				'status' => 400,
 				"results" => "You are not authorized to make this request"
 			);
-
 			echo json_encode($json, http_response_code($json["status"]));
-
 			return;
-
 		}else{
-
 			/*=============================================
 			Acceso público
 			=============================================*/
 			$response = new GetController();
-			$response -> getData($table, "*",null,null,null,null);
-
+			$select = isset($_GET["select"]) ? $_GET["select"] : "*";
+			$response -> getData($table, $select, null, null, null, null);
 			return;
 		}
-	
 	}
 
 	/*=============================================
@@ -104,6 +97,12 @@ if(count($routesArray) == 1 && isset($_SERVER['REQUEST_METHOD'])){
 
 	}
 
+}
+
+// Nueva ruta para notas de crédito
+if (count($routesArray) == 2 && $routesArray[1] === 'credit_notes' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    include 'services/credit_note.php';
+    return;
 }
 
 

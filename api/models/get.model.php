@@ -26,7 +26,9 @@ class GetModel{
 		Sin ordenar y sin limitar datos
 		=============================================*/
 
-		$sql = "SELECT $select FROM $table";
+		$selectArray = explode(",", $select);
+        $select = implode(",", array_map("trim", $selectArray)); // Asegura que no haya espacios
+        $sql = "SELECT $select FROM $table";
 
 		/*=============================================
 		Ordenar datos sin limites
@@ -60,17 +62,22 @@ class GetModel{
 
 		$stmt = Connection::connect()->prepare($sql);
 
+		// DEBUG LOG
+        error_log('SQL: ' . $sql);
+
 		try{
 
 			$stmt -> execute();
 
 		}catch(PDOException $Exception){
 
+			error_log('PDOException: ' . $Exception->getMessage());
 			return null;
 		
 		}
-
-		return $stmt -> fetchAll(PDO::FETCH_CLASS);
+		$result = $stmt -> fetchAll(PDO::FETCH_CLASS);
+        error_log('RESULT: ' . print_r($result, true));
+		return $result;
 
 	}
 
@@ -159,17 +166,22 @@ class GetModel{
 
 		}
 
+		// DEBUG LOG
+        error_log('SQL: ' . $sql);
+
 		try{
 
 			$stmt -> execute();
 
 		}catch(PDOException $Exception){
 
+			error_log('PDOException: ' . $Exception->getMessage());
 			return null;
 		
 		}
-
-		return $stmt -> fetchAll(PDO::FETCH_CLASS);
+		$result = $stmt -> fetchAll(PDO::FETCH_CLASS);
+        error_log('RESULT: ' . print_r($result, true));
+		return $result;
 
 	}
 
@@ -246,17 +258,22 @@ class GetModel{
 
 			$stmt = Connection::connect()->prepare($sql);
 
+			// DEBUG LOG
+            error_log('SQL: ' . $sql);
+
 			try{
 
 				$stmt -> execute();
 
 			}catch(PDOException $Exception){
 
+				error_log('PDOException: ' . $Exception->getMessage());
 				return null;
 			
 			}
-
-			return $stmt -> fetchAll(PDO::FETCH_CLASS);
+			$result = $stmt -> fetchAll(PDO::FETCH_CLASS);
+            error_log('RESULT: ' . print_r($result, true));
+			return $result;
 
 		}else{
 
@@ -365,17 +382,22 @@ class GetModel{
 
 			}
 
+			// DEBUG LOG
+            error_log('SQL: ' . $sql);
+
 			try{
 
 				$stmt -> execute();
 
 			}catch(PDOException $Exception){
 
+				error_log('PDOException: ' . $Exception->getMessage());
 				return null;
 			
 			}
-
-			return $stmt -> fetchAll(PDO::FETCH_CLASS);
+			$result = $stmt -> fetchAll(PDO::FETCH_CLASS);
+            error_log('RESULT: ' . print_r($result, true));
+			return $result;
 
 		}else{
 
@@ -473,17 +495,22 @@ class GetModel{
 
 		}
 
+		// DEBUG LOG
+        error_log('SQL: ' . $sql);
+
 		try{
 
 			$stmt -> execute();
 
 		}catch(PDOException $Exception){
 
+			error_log('PDOException: ' . $Exception->getMessage());
 			return null;
 		
 		}
-
-		return $stmt -> fetchAll(PDO::FETCH_CLASS);
+		$result = $stmt -> fetchAll(PDO::FETCH_CLASS);
+        error_log('RESULT: ' . print_r($result, true));
+		return $result;
 
 
 	}
@@ -592,17 +619,22 @@ class GetModel{
 
 			}
 
+			// DEBUG LOG
+            error_log('SQL: ' . $sql);
+
 			try{
 
 				$stmt -> execute();
 
 			}catch(PDOException $Exception){
 
+				error_log('PDOException: ' . $Exception->getMessage());
 				return null;
 			
 			}
-
-			return $stmt -> fetchAll(PDO::FETCH_CLASS);
+			$result = $stmt -> fetchAll(PDO::FETCH_CLASS);
+            error_log('RESULT: ' . print_r($result, true));
+			return $result;
 
 		}else{
 
@@ -693,17 +725,22 @@ class GetModel{
 
 		$stmt = Connection::connect()->prepare($sql);
 
+		// DEBUG LOG
+        error_log('SQL: ' . $sql);
+
 		try{
 
 			$stmt -> execute();
 
 		}catch(PDOException $Exception){
 
+			error_log('PDOException: ' . $Exception->getMessage());
 			return null;
 		
 		}
-
-		return $stmt -> fetchAll(PDO::FETCH_CLASS);
+		$result = $stmt -> fetchAll(PDO::FETCH_CLASS);
+        error_log('RESULT: ' . print_r($result, true));
+		return $result;
 
 	}
 
@@ -796,17 +833,22 @@ class GetModel{
 
 			$stmt = Connection::connect()->prepare($sql);
 
+			// DEBUG LOG
+            error_log('SQL: ' . $sql);
+
 			try{
 
 				$stmt -> execute();
 
 			}catch(PDOException $Exception){
 
+				error_log('PDOException: ' . $Exception->getMessage());
 				return null;
 			
 			}
-
-			return $stmt -> fetchAll(PDO::FETCH_CLASS);
+			$result = $stmt -> fetchAll(PDO::FETCH_CLASS);
+            error_log('RESULT: ' . print_r($result, true));
+			return $result;
 
 		}else{
 
