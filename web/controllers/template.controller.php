@@ -48,7 +48,7 @@ class TemplateController{
 		$mail->Host = 'smtp.gmail.com'; // Usar Gmail como servidor SMTP
 		$mail->SMTPAuth = true;
 		$mail->Username = 'cjair759@gmail.com'; // Usar correo directamente
-		$mail->Password = 'jhdn mkpaj ujr ezajy'; // Usar contraseña directamente
+		$mail->Password = 'bgtq jwfr pefd vxsb'; // Usar contraseña directamente
 		$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Usar encriptación STARTTLS
 		$mail->Port = 587; // Usar el puerto 587
 		$mail->SMTPDebug = 0; // Desactivar depuración para ocultar logs SMTP
